@@ -54,16 +54,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		/*UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found"), Time);*/
-		//Create an FRotator at the socket where the barrel connects to the tank
-		//Rotate the barrel of the tank to line up the Projectile socket with the bHaveAimSolition results 
 	}
-	else
-	{
-		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: No aim solve found "), Time);
-	}
-	//if no solution found do nothing
+		//no aim solution found, do nothing
 }
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
