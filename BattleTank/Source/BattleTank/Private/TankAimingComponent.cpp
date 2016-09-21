@@ -12,7 +12,9 @@ UTankAimingComponent::UTankAimingComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = false;
+	PrimaryComponentTick.bCanEverTick = true;//TODO should this tick??
+
+	// ...
 }
 
 
@@ -51,6 +53,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
+		MoveTurretTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
 		/*UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found"), Time);*/
 		//Create an FRotator at the socket where the barrel connects to the tank
@@ -66,11 +69,20 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
-	//Work out difference betweeen current barrel rotation and aim direction and AimDirection
+	//Work out difference betweeen current barrel rotation and aim direction and
 	auto BarrelRotation = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotation;
 
 	Barrel->Elevate(DeltaRotator.Pitch);
-	Turret->Rotate(DeltaRotator.Yaw);
+}
+
+void UTankAimingComponent::MoveTurretTowards(FVector AimDirection)
+{
+	//Work out difference betweeen current barrel rotation and aim direction and
+	auto TurretRotation = Turret->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - TurretRotation;
+
+	Turret->Rotate(DeltaRotator.Roll);
 }
