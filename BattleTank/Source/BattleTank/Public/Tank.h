@@ -18,6 +18,9 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 
