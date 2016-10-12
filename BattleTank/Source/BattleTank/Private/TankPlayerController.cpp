@@ -1,9 +1,10 @@
 // CopyRight EmbraceIT Ltd.
 
 #include "BattleTank.h"
+#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "TankPlayerController.h"
-#include "TankAimingComponent.h"
+
 
 
 void  ATankPlayerController::BeginPlay()
