@@ -11,11 +11,4 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-// Called when the game starts or when spawned
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();	//Needed for the BP BeginPLay to run!!!!!
-	//UE_LOG(LogTemp, Warning, TEXT("DONKEY: BeginPLay C++"));
-}
-
 					  
