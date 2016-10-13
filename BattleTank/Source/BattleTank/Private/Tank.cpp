@@ -1,8 +1,6 @@
 // CopyRight EmbraceIT Ltd.
 
 #include "BattleTank.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
 #include "Tank.h"
 
 
@@ -20,21 +18,4 @@ void ATank::BeginPlay()
 	//UE_LOG(LogTemp, Warning, TEXT("DONKEY: BeginPLay C++"));
 }
 
-void ATank::Fire()
-{
-	if (!ensure(Barrel)) { return; }
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-	if (isReloaded) 
-	{
-		//else spawn a projectile at the socket location
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-			ProjectileBlueprint,
-			Barrel->GetSocketLocation(FName("Projectile")),
-			Barrel->GetSocketRotation(FName("Projectile"))
-			);
-
-		Projectile->LaunchProjectile(LaunchSpeed);
-
-		LastFireTime = FPlatformTime::Seconds();
-	}
-}					  
+					  
