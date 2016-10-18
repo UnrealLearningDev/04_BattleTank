@@ -40,6 +40,10 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	{
 		FiringState = EFiringState::Aiming;
 	}
+	else if (GetAmmoCount() == 0)
+	{
+		FiringState = EFiringState::NoAmmo;
+	}
 	else
 	{
 		FiringState = EFiringState::Locked;
@@ -57,6 +61,19 @@ bool UTankAimingComponent::IsBarrelMoving()
 	if (!ensure(Barrel)) { return false; }
 	auto BarrelForward = Barrel->GetForwardVector();
 	return !(BarrelForward.Equals(AimDirection, 0.01));
+}
+
+float UTankAimingComponent::GetAmmoCount()
+{
+		return AmmoCount;
+}
+
+void UTankAimingComponent::SetAmmoCount()
+{
+	if (AmmoCount >= 1)
+	{
+		AmmoCount = AmmoCount -1 ;
+	}
 }
 
 
@@ -124,7 +141,7 @@ void UTankAimingComponent::Fire()
 			);
 
 		Projectile->LaunchProjectile(LaunchSpeed);
-
+		SetAmmoCount();
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }

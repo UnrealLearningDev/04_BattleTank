@@ -40,6 +40,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
 	
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	float AmmoCount = 10;
+
 private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
@@ -52,6 +55,10 @@ private:
 	void MoveBarrelTowards(FVector AimDirection);
 
 	bool IsBarrelMoving();
+
+	float GetAmmoCount();
+
+	void SetAmmoCount();
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
