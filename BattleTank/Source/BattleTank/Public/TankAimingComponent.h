@@ -34,7 +34,7 @@ public:
 	void Initialize(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet);
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	float GetAmmoCount() const;
+	int GetAmmoCount() const;
 
 	void AimAt(FVector HitLocation);
 
@@ -73,5 +73,5 @@ private:
 
 	FVector AimDirection;
 
-	float AmmoCount = 10;
+	int AmmoCount = 10;
 };

@@ -63,7 +63,7 @@ bool UTankAimingComponent::IsBarrelMoving()
 	return !(BarrelForward.Equals(AimDirection, 0.01));
 }
 
-float UTankAimingComponent::GetAmmoCount() const
+int UTankAimingComponent::GetAmmoCount() const
 {
 		return AmmoCount;
 }
@@ -134,7 +134,7 @@ void UTankAimingComponent::Fire()
 			);
 
 		Projectile->LaunchProjectile(LaunchSpeed);
-		AmmoCount = AmmoCount - 1.0;
+		AmmoCount --;
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }
