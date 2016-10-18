@@ -47,6 +47,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	//TODO handle aiming and locked states
 }
 
+EFiringState UTankAimingComponent::GetFiringState() const
+{
+	return FiringState;
+}
+
 bool UTankAimingComponent::IsBarrelMoving()
 {
 	if (!ensure(Barrel)) { return false; }
@@ -82,6 +87,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 	}
 		//no aim solution found, do nothing
 }
+
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
