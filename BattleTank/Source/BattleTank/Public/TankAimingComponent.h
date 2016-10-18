@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialize(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet);
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	float GetAmmoCount() const;
+
 	void AimAt(FVector HitLocation);
 
 	EFiringState GetFiringState() const;
@@ -40,8 +43,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
 	
-	UPROPERTY(BlueprintReadOnly, Category = "State")
-	float AmmoCount = 10;
 
 private:
 	// Sets default values for this component's properties
@@ -55,10 +56,6 @@ private:
 	void MoveBarrelTowards(FVector AimDirection);
 
 	bool IsBarrelMoving();
-
-	float GetAmmoCount();
-
-	void SetAmmoCount();
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
@@ -75,4 +72,6 @@ private:
 	double LastFireTime = 0;
 
 	FVector AimDirection;
+
+	float AmmoCount = 10;
 };
