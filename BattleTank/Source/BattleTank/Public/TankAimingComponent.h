@@ -34,7 +34,7 @@ public:
 	void Initialize(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet);
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetAmmoCount() const;
+	int32 GetAmmoCount() const;
 
 	void AimAt(FVector HitLocation);
 
@@ -69,9 +69,12 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSeconds = 3;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	int32 AmmoCount = 3;
+
 	double LastFireTime = 0;
 
 	FVector AimDirection;
 
-	int AmmoCount = 3;
+
 };
