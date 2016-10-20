@@ -20,6 +20,11 @@ public:
 	void LaunchProjectile(float Speed);
 
 private:
+	UProjectileMovementComponent* ProjectileMovement = nullptr;
+
+	//required signiture for hit events in c++ for 4.12
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* CollisionMesh = nullptr;
@@ -30,9 +35,8 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
-	UProjectileMovementComponent* ProjectileMovement = nullptr;
-	
-	//required signiture for hit events in c++ for 4.12
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	URadialForceComponent* ExplosionForce = nullptr;
+
+
 };
