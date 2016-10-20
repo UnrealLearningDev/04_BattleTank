@@ -19,14 +19,16 @@ public:
 
 	void LaunchProjectile(float Speed);
 
-protected:
-	UPROPERTY(EditDefaultsOnly, Category = "State")
-	float DestroyDelay = 10.0f;
-
 private:
 	void OnTimerExpire();
 
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float DestroyDelay = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float ProjectileDamage = 20.0f;
 
 	//required signiture for hit events in c++ for 4.12
 	UFUNCTION()
