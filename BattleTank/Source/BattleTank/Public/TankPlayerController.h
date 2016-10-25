@@ -29,8 +29,6 @@ private:
 
 	virtual void SetPawn(APawn* InPawn) override;
 
-	virtual void StartSpectatingOnly() override;
-
 	//start the tank moving the barrell so a shot hits where the crosshair intersects the world
 	void AimTowardsCrosshair();
 

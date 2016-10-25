@@ -6,18 +6,6 @@
 #include "TankPlayerController.h"
 
 
-
-void  ATankPlayerController::BeginPlay()
-{
-	Super::BeginPlay();
-	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (!ensure(AimingComponent)) { return; }
-
-	FoundAimingComponent(AimingComponent);
-
-
-}
-
 void ATankPlayerController::SetPawn(APawn* InPawn)
 {
 	Super::SetPawn(InPawn);
@@ -32,6 +20,17 @@ void ATankPlayerController::SetPawn(APawn* InPawn)
 	}
 }
 
+void  ATankPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
+	if (!ensure(AimingComponent)) { return; }
+
+	FoundAimingComponent(AimingComponent);
+
+
+}
+
 void ATankPlayerController::OnPossessedTankDeath()
 {
 	StartSpectatingOnly();
@@ -42,11 +41,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
-}
-
-void ATankPlayerController::StartSpectatingOnly()
-{
-	Super::StartSpectatingOnly();
 }
 
 void ATankPlayerController::AimTowardsCrosshair()
